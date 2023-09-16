@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
+require('dotenv').config();
 
 
 let orders = [
@@ -17,7 +17,7 @@ let orders = [
 ]
 
 
-router.get("/fav_orders", (req, res) => {
+router.get(process.env.FAVORDERS, (req, res) => {
     if (orders.length == 0) {
         res.status(404);
         console.log("empty");
@@ -26,7 +26,7 @@ router.get("/fav_orders", (req, res) => {
     res.json(orders);
 });
 
-router.post("/post_order", (req, res) => {
+router.post(process.env.POSTORDERS, (req, res) => {
     // Create a new order which is redundant
 
     const new_order = req.body;
